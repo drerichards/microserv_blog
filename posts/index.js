@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const {
     randomBytes
 } = require('crypto')
@@ -11,6 +12,7 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(express.json())
+app.use(cors())
 
 // stores every post created
 const posts = {}

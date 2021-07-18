@@ -1,20 +1,20 @@
-/* eslint-disable import/no-anonymous-default-export */
 import React, { useState } from 'react'
 import axios from 'axios'
 
-export default () => {
+const PostCreate = () => {
     const [title, setTitle] = useState('')
     const onSubmit = async (e) => {
         // prevents browsers default method of form submission
         e.preventDefault()
-
-        // create Promise for post title action and store result in var
-        const res = await axios.post(
-            'http://localhost:4000/posts',
-            { title }
-        )
-        // reset input and confirms action occurred
-        setTitle('')
+        if (title.length > 0) {
+            // create Promise for post title action
+            await axios.post(
+                'http://localhost:4000/posts',
+                { title }
+            )
+            // reset input and confirms action occurred
+            setTitle('')
+        }
     }
 
     return <>
@@ -26,10 +26,12 @@ export default () => {
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                         type="text"
-                        className="form-control" />
+                        className="form-control my-2" />
                 </div>
-                <button className="btn-primary">Submit</button>
+                <button className="btn btn-primary">Submit</button>
             </form>
         </div>
     </>
 }
+
+export default PostCreate

@@ -18,6 +18,8 @@ app.get('/posts', (req, res) => {
 app.post('/events', (req, res) => {
     const { type, data } = req.body
 
+    // receives data from EBus and decides what to 
+    // do with it depending on the event type
     if (type === 'postCreated') {
         const { id, title } = data
         posts[id] = { id, title, comments: [] }

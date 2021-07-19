@@ -38,7 +38,8 @@ app.post('/posts', async (req, res) => {
         title
     }
 
-    // post event to bus and pass along data
+    // post event to bus and pass along updated Posts data 
+    // which will be passed to other micros subscribed to the '/events' route
     await axios.post('http://localhost:4005/events', {
         type: 'postCreated',
         data: {

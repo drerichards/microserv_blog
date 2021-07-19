@@ -47,4 +47,4 @@ app.post('/events', (req, res) => {
     res.send({ status: 'OK' })
 })
 
-app.listen(4001, () => console.log('Port 4001'))
+app.listen(4001, () => console.log('Port 4001: Comments'))

@@ -25,7 +25,7 @@ export default () => {
                 style={{ width: '30%', marginBottom: '20px' }}
             >
                 <div className="card-body">
-                    <h5 className="text-capitalize">{post.title}</h5>
+                    <h5 className="text-capitalize" style={{ fontSize: '1rem' }}>{post.title}</h5>
                     <CommentList comments={post.comments} />
                     <CommentCreate postId ={post.id}/>
                 </div>

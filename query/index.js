@@ -33,6 +33,4 @@ app.post('/events', (req, res) => {
     res.send({ status: 'OK' })
 })
 
-app.listen(4002, () => {
-    console.log('Port 4002')
-})
+app.listen(4002, () => console.log('Port 4002: Query'))

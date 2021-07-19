@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import React, { useState } from 'react'
 import axios from 'axios'
 
@@ -16,20 +15,22 @@ const CommentCreate = ({ postId }) => {
     }
 
     return <>
-        <div>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label htmlFor="">New Comment</label>
+        <hr />
+        <form onSubmit={onSubmit}>
+            <div className="form-group">
+                <div class="input-group input-group-sm mb-3">
                     <input
                         value={content}
+                        placeholder='New Comment'
                         onChange={e => setContent(e.target.value)}
                         type="text"
-                        className="form-control my-2"
+                        className="form-control"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
                     />
                 </div>
-                <button className="btn btn-primary">Submit</button>
-            </form>
-        </div>
+            </div>
+            <button className="btn btn-primary btn-sm">Submit</button>
+        </form>
     </>
 }
 

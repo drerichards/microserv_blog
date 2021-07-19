@@ -57,4 +57,4 @@ app.post('/events', (req, res) => {
     res.send({ status: 'OK' })
 })
 
-app.listen(4000, () => console.log('Port 4000'))
+app.listen(4000, () => console.log('Port 4000: Posts'))

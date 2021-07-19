@@ -17,6 +17,4 @@ app.post('/events', (req, res) => {
     res.send({status: 'OK'})
 })
 
-app.listen(4005, () => {
-    console.log('Port 4005')
-})
+app.listen(4005, () => console.log('Port 4005: EBus'))

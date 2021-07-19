@@ -26,12 +26,21 @@ app.post('/events', (req, res) => {
     }
 
     if (type === 'commentCreated') {
-        const { id, content, postId } = data
+        // when new commentCreated event, pass the comment 
+        // to Query micro so that it can immed show moderation status
+        const { id, content, postId, status } = data
         const post = posts[postId]
-        post.comments.push({ id, content })
+        post.comments.push({ id, content, status, postId })
     }
 
-    console.log(posts)
+    if (type === 'commentUpdated') {
+        const {id, content, postId, status} = data
+        const post = posts[postId]
+        const commentToUpdate = post.comments.find(comm => comm.id === id)
+        commentToUpdate.status = status
+        commentToUpdate.content = content
+    }
+
     res.send({ status: 'OK' })
 })
 

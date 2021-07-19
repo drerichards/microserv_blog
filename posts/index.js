@@ -3,6 +3,7 @@ const cors = require('cors')
 const {
     randomBytes
 } = require('crypto')
+const axios = require('axios')
 
 const app = express()
 
@@ -24,7 +25,7 @@ app.get('/posts', (req, res) => {
 })
 
 // creates new posts
-app.post('/posts', (req, res) => {
+app.post('/posts', async (req, res) => {
     // created random ID of 4 bytes
     const id = randomBytes(4).toString('hex')
     const {
@@ -37,9 +38,23 @@ app.post('/posts', (req, res) => {
         title
     }
 
+    // post event to bus and pass along data
+    await axios.post('http://localhost:4005/events', {
+        type: 'postCreated',
+        data: {
+            id,
+            title
+        }
+    })
+
     // send back server confirmation that a resource has been added
     // send back created post
     res.status(201).send(posts[id])
+})
+
+app.post('/events', (req, res) => {
+    console.log('Event post received', req.body.type)
+    res.send({ status: 'OK' })
 })
 
 app.listen(4000, () => console.log('Port 4000'))
